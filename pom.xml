@@ -1,0 +1,118 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<project xmlns="https://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemalocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lch</groupId>
+    <artifactId>mavenDemo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceencoding>UTF-8</project.build.sourceencoding>
+        <jmeter.result.jtl.dir>${project.build.directory}\jmeter\results</jmeter.result.jtl.dir>
+        <jmeter.result.html.dir>${project.build.directory}\jmeter\html</jmeter.result.html.dir>
+        <jmeter.result.html.dir1>${project.build.directory}\jmeter\html1</jmeter.result.html.dir1>
+        <reportname>TestReport</reportname>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+<!--        <dependency>
+            <groupId>com.agilejava.docbkx</groupId>
+            <artifactId>docbkx-maven-plugin</artifactId>
+            <version>2.0.11</version>
+        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>2.7.0</version>
+                <!--<configuration>
+                    <resultsFileFormat>xml</resultsFileFormat>
+                    <ignoreResultFailures>true</ignoreResultFailures>
+                    <testResultsTimestamp>false</testResultsTimestamp>
+                </configuration>-->
+
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <testFilesIncluded>
+                        <jMeterTestFile>*.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+                    <resultsFileNameDateFormat>yyyy-MM-dd HH-mm-ss</resultsFileNameDateFormat>
+                    <jmeterVersion>5.1</jmeterVersion>
+                </configuration>
+            </plugin>
+
+            <!--<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>1.0-beta-3</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <transformationSets>
+                        <transformationSet>
+                            <dir>${jmeter.result.jtl.dir}</dir>
+                            <stylesheet>src\test\resources\jmeter-results-report_21.xsl</stylesheet>
+                            &lt;!&ndash;<stylesheet>src\test\resources\jmeter-results-report-loadtest.xsl</stylesheet>&ndash;&gt;
+                            <outputDir>${jmeter.result.html.dir}</outputDir>
+                            <fileMappers>
+                                <filemapper implementation="org.codehaus.plexus.components.io.filemappers.FileExtensionMapper">
+                                    <targetExtension>html</targetExtension>
+                                </filemapper>
+                            </fileMappers>
+                        </transformationSet>
+                        &lt;!&ndash;<transformationSet>
+                            <dir>${jmeter.result.jtl.dir}</dir>
+                            <stylesheet>src\test\resources\jmeter-results-details-report_21.xsl</stylesheet>
+                            <outputDir>${jmeter.result.html.dir1}</outputDir>
+                            <fileMappers>
+                                <filemapper implementation="org.codehaus.plexus.componoutputdirents.io.filemappers.FileExtensionMapper">
+                                    <targetExtension>html</targetExtension>
+                                </filemapper>
+                            </fileMappers>
+                        </transformationSet>&ndash;&gt;
+                    </transformationSets>
+                </configuration>
+            &lt;!&ndash; using XSLT 2.0 &ndash;&gt;
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.saxon</groupId>
+                        <artifactId>saxon</artifactId>
+                        <version>8.7</version>
+                    </dependency>
+                </dependencies>
+            </plugin>-->
+        </plugins>
+    </build>
+
+
+
+
+</project>
